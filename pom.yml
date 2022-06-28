@@ -1,0 +1,42 @@
+modelVersion: 4.0.0
+groupId: learning.maven
+artifactId: pom-as-yaml
+version: 0.0.1-SNAPSHOT
+name: Maven Project with POM as YAML
+
+properties:
+  version.neo4j-java-driver: 4.4.6
+  version.maven-compiler-plugin: 3.10.1
+  version.maven-jar-plugin: 3.2.2
+  version.exec-maven-plugin: 3.0.0
+
+dependencies:
+  - groupId: org.neo4j.driver
+    artifactId: neo4j-java-driver
+    version: ${version.neo4j-java-driver}
+    scope: compile
+
+build:
+  plugins:
+    - groupId: org.apache.maven.plugins
+      artifactId: maven-compiler-plugin
+      version: ${version.maven-compiler-plugin}
+      configuration:
+        source: 17
+        target: 17
+        encoding: utf-8
+    - groupId: org.apache.maven.plugins
+      artifactId: maven-jar-plugin
+      version: ${version.maven-jar-plugin}
+      configuration:
+        archive:
+          manifest:
+            mainClass: learning.maven.yaml.Main
+    - groupId: org.codehaus.mojo
+      artifactId: exec-maven-plugin
+      version: ${version.exec-maven-plugin}
+      configuration:
+        mainClass: learning.maven.yaml.Main
+
+
+
